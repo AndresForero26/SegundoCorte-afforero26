@@ -68,18 +68,20 @@
                     } else {
                         errorMessageDiv.innerHTML = 'Todos los correos son válidos.';
                     }
+                } else {
+                    emailInput.value = '';
                 }
             });
         };
 
         const validateEmail = (email) => {
-            const regex = /^(?:[^\s<]+ <)?([^\s@]+@[^\s@]+\.[^\s@]+)>?$|^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return regex.test(email);
         };
 
         const cleanEmail = (email) => {
-            const match = email.match(/(?:[^\s<]+ <)?([^\s@]+@[^\s@]+\.[^\s@]+)?/);
-            return match && match[1] ? match[1] : email.replace(/[<>]/g, '').trim();
+            const match = email.match(/([^\s@]+@[^\s@]+\.[^\s@]+)/);
+            return match ? match[0].trim() : '';
         };
 
         validateEmails();
