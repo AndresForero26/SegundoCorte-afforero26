@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruver</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .navbar {
+            background-color: #fff;
+        }
+
+        .navbar-brand {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #6c757d;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #4CAF50;
+        }
+
+        .navbar-nav .dropdown-menu {
+            background-color: #fff;
+        }
+
+        .navbar-nav .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .icon {
+            color: #4CAF50;
+            margin-right: 20px;
+        }
+
+        .icon-cart {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+
+        .navbar-center {
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .bg-opacity-custom {
+            position: relative;
+            padding: 5rem;
+        }
+
+        .bg-opacity-custom::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.revistamoi.com/wp-content/uploads/2019/06/05-%C2%BFQue%CC%81-frutas-se-dan-en-estas-temporadas-WEB.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .bg-opacity-custom .row {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-search {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .flsd {
+            background-color: #eceef0;
+            border-radius: 6px;
+        }
+
+        .product-card {
+            border: 1px solid #f0f0f0;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            border-radius: 10px 10px 0 0;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .product-card .badge {
+            background-color: #f9b634;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .product-card .card-body {
+            text-align: center;
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 10px;
+        }
+
+        .btn-add-to-cart {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #218838;
+        }
+
+        .filter-buttons {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-buttons button {
+            background-color: #f9b634;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #e6a529;
+        }
+
+        .btn-search {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .product-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .features div {
+            text-align: center;
+        }
+
+        @media (max-width: 500px) and (min-width: 300px) {
+            .bg-opacity-custom .row {
+                flex-direction: column-reverse;
+            }
+
+            .bg-opacity-custom h1 {
+                color: blue;
+            }
+        }
+
+        @media (max-width: 500px) and (min-width: 300px) {
+            .bg-opacity-custom .row {
+                flex-direction: column-reverse;
+            }
+
+            .bg-opacity-custom h1 {
+                color: blue;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container d-flex align-items-center">
+            <a class="navbar-brand" href="#">Fruver</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <ul class="navbar-nav navbar-center">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Páginas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Carrito</a></li>
+                            <li><a class="dropdown-item" href="#">Checkout</a></li>
+                            <li><a class="dropdown-item" href="#">Comentarios</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contáctenos</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <a href="#" class="icon">
+                        <i class="bi bi-search fs-4"></i>
+                    </a>
+                    <a href="#" class="icon icon-cart">
+                        <i class="bi bi-bag fs-4"></i>
+                        <span class="cart-badge">3</span>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="bi bi-person fs-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container bg-opacity-custom mt-4 p-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <p style="color: #f9b634; font-weight: bolder;">100% Organic Foods</p>
+                <h1 style="color: #28a745; font-weight: bolder;">Organic Veggies & Fruits Foods</h1>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-search">Submit Now</button>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="./imagenes/Imagen pegada.png" alt="Frutas" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="container features mt-5">
+        <div class="flsd p-4">
+            <i class="icon bi bi-truck fs-2"></i>
+            <h5>Free Shipping</h5>
+            <p>Free on order over $300</p>
+        </div>
+        <div class="flsd p-4">
+            <i class="icon bi bi-shield-lock fs-2"></i>
+            <h5>Security Payment</h5>
+            <p>100% secure payment</p>
+        </div>
+        <div class="flsd p-4">
+            <i class="icon bi bi-arrow-repeat fs-2"></i>
+            <h5>30 Day Return</h5>
+            <p>30 day money back guarantee</p>
+        </div>
+        <div class="flsd p-4">
+            <i class="icon bi bi-headset fs-2"></i>
+            <h5>24/7 Support</h5>
+            <p>Support every time fast</p>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <h2 class="mb-0">Productos Orgánicos</h2>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <div class="filter-buttons">
+                    <button>Todos los Productos</button>
+                    <button>Vegetales</button>
+                    <button>Frutas</button>
+                    <button>Pan de Cereales</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="product-card position-relative">
+                    <img src="./imagenes/Imagen pegada (2).png" class="img-fluid" alt="Grapes">
+                    <span class="badge">Fruits</span>
+                    <div class="card-body">
+                        <h5 class="card-title">Grapes</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.
+                        </p>
+                        <div class="price">$4.99 / kg</div>
+                        <button class="btn btn-add-to-cart">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card position-relative">
+                    <img src="./imagenes/Imagen pegada (2).png" class="img-fluid" alt="Grapes">
+                    <span class="badge">Fruits</span>
+                    <div class="card-body">
+                        <h5 class="card-title">Grapes</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.
+                        </p>
+                        <div class="price">$4.99 / kg</div>
+                        <button class="btn btn-add-to-cart">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card position-relative">
+                    <img src="./imagenes/Imagen pegada (2).png" class="img-fluid" alt="Raspberries">
+                    <span class="badge">Fruits</span>
+                    <div class="card-body">
+                        <h5 class="card-title">Raspberries</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.
+                        </p>
+                        <div class="price">$4.99 / kg</div>
+                        <button class="btn btn-add-to-cart">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="product-card position-relative">
+                    <img src="./imagenes/Imagen pegada (2).png" class="img-fluid" alt="Apricots">
+                    <span class="badge">Fruits</span>
+                    <div class="card-body">
+                        <h5 class="card-title">Apricots</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod.
+                        </p>
+                        <div class="price">$4.99 / kg</div>
+                        <button class="btn btn-add-to-cart">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
